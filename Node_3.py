@@ -22,16 +22,14 @@ def find_max(head):
 
 def remove_tail(head):
     if head is None:
-        print("List is empty. No tail to remove.")
         return None
     if head.next is None:
         return None 
         
     current = head
-    while current.next: 
+    while current.next.next: 
         current = current.next
-
-    current = None 
+    current.next = None 
     return head
 
 head = Node_3("Isabelle", Node_3("Alfonso", Node_3("Cyd")))
