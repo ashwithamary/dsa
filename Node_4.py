@@ -1,0 +1,94 @@
+# week 6, Session 1, Advanced 1
+class Node_4:
+   def __init__(self, value, next=None):
+       self.value = value
+       self.next = next
+
+# For testing
+def print_linked_list(head):
+    current = head
+    while current:
+        print(current.value, end=" -> " if current.next else "\n")
+        current = current.next
+
+def edit_dna_sequence(dna_strand, m, n):
+    head = dna_strand
+    current = head
+    current_pos = 1
+    while current:
+        for _ in range(m-1):
+            if current:
+                current = current.next
+            else:
+                return head
+        if not current:
+            return head
+
+        last_kept = current
+        for _ in range(n):
+            if current and current.next:
+                current = current.next
+            else:
+                last_kept.next = None
+                return head
+            
+        if current:
+            last_kept.next = current.next
+            current = last_kept.next
+        else:
+            last_kept.next = None
+            return head
+        
+    return head
+
+def cycle_length(protein):
+    
+    if not protein or not protein.next:
+        return []
+    
+    slow = protein
+    fast = protein
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+        if slow == fast:
+            break
+    else:
+        return []
+    
+    res = []
+    current = slow
+    while True:
+        res.append(current.value)
+        current=current.next
+        if current==slow:
+            break
+    
+    return res
+
+
+def split_protein_chain(protein, k):
+
+# pb_1
+# dna_strand = Node_4(1, Node_4(2, Node_4(3, Node_4(4, Node_4(5, Node_4(6, Node_4(7, Node_4(8, Node_4(9, Node_4(10, Node_4(11, Node_4(12, Node_4(13)))))))))))))
+# print_linked_list(edit_dna_sequence(dna_strand, 2, 3))
+
+# pb_2
+# protein_head = Node_4('Ala', Node_4('Gly', Node_4('Leu', Node_4('Val'))))
+# protein_head.next.next.next.next = protein_head.next 
+
+# print(cycle_length(protein_head))
+
+# pb_3
+protein1 = Node_4('Ala', Node_4('Gly', Node_4('Leu', Node_4('Val', Node_4('Pro', Node_4('Ser', Node_4('Thr', Node_4('Cys'))))))))
+protein2 = Node_4('Ala', Node_4('Gly', Node_4('Leu', Node_4('Val'))))
+
+parts = split_protein_chain(protein1, 3)
+for part in parts:
+    print_linked_list(part)
+
+parts = split_protein_chain(protein2, 5)
+for part in parts:
+    print_linked_list(part)
+
