@@ -68,7 +68,7 @@ def cycle_length(protein):
     return res
 
 
-def split_protein_chain(protein, k):
+# def split_protein_chain(protein, k):
 
 # pb_1
 # dna_strand = Node_4(1, Node_4(2, Node_4(3, Node_4(4, Node_4(5, Node_4(6, Node_4(7, Node_4(8, Node_4(9, Node_4(10, Node_4(11, Node_4(12, Node_4(13)))))))))))))
